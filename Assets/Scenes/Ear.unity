@@ -409,7 +409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e84bc888c043684ba47ce9937127136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 916815926}
 --- !u!114 &1267522753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBoxPrefab: {fileID: 279820582046772386, guid: 28d1a58d930cef74dacd5cf67f174ff3,
     type: 3}
+  canvas: {fileID: 916815926}
 --- !u!1 &1622737444
 GameObject:
   m_ObjectHideFlags: 0

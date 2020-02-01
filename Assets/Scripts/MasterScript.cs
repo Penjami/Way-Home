@@ -5,11 +5,12 @@ using UnityEngine;
 public class MasterScript : MonoBehaviour
 {
 	List<StoryEvent> storyEvents = new List<StoryEvent>();
+	List<StoryResource> storyResources;
 	myTextGui gui;
-	public GameObject canvas;
 
-	void Awake(){
-		gui = new myTextGui(canvas.transform);
+	void Awake(){		
+		gui = gameObject.GetComponent(typeof(myTextGui)) as myTextGui;
+
 	}
 
     // Start is called before the first frame update
@@ -18,6 +19,9 @@ public class MasterScript : MonoBehaviour
 		EventDataReader reader = new EventDataReader();
 		reader.readEventData("Assets/Businessdata/gameevents.txt", storyEvents);
 		Debug.Log(storyEvents.Count + " events read from file.");
+
+		StoryResourceReader resourceReader = new StoryResourceReader();
+		storyResources = resourceReader.readResourceData ("Assets/Businessdata/resources.txt");
         
     }
 
@@ -26,5 +30,6 @@ public class MasterScript : MonoBehaviour
     {
 		StoryEvent currentEvent = storyEvents[0];
 		gui.showEvent(currentEvent);
+		gui.updateResources (storyResources);
     }
 }

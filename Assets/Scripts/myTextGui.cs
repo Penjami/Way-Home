@@ -11,46 +11,62 @@ public class myTextGui : MonoBehaviour
     // Start is called before the first frame update
 
 	public GameObject textBoxPrefab; 
-	Transform canvasTransform;
+	public GameObject canvas;
 	StoryEvent storeCurrentEvent = null;
-	GameObject eventMainText;
+	//GameObject eventMainText;
 
 	List<GameObject> eventBoxList = new List<GameObject>();
-
-	public myTextGui(Transform canvas){
-		canvasTransform = canvas;
-	}
+	GameObject resourceText;
 
     void Start()
     {
-		eventMainText = Instantiate(textBoxPrefab);
-		Debug.Log(eventMainText.GetComponent<Text>().text);
+		//eventMainText = Instantiate(textBoxPrefab);
+		//Debug.Log(eventMainText.GetComponent<Text>().text);
+		resourceText = Instantiate(textBoxPrefab, new Vector3(-Screen.width/2 + 150, Screen.height/2-50, 0), Quaternion.identity);
+		resourceText.transform.SetParent(canvas.transform, false);
     }
 
     // Update is called once per frame
     void Update()
     {
-		Debug.Log("update" + eventMainText.GetComponent<Text>().text);
+		//Debug.Log("update" + eventMainText.GetComponent<Text>().text);
     }
 
 	public void showEvent(StoryEvent currentEvent){
-		//if (currentEvent == storeCurrentEvent){
-		//	Debug.Log("old event");
-		//	return;
-		//}
+		if (currentEvent == storeCurrentEvent){
+			//Debug.Log("old event");
+			return;
+		}
 
 		Debug.Log("new event");
-		Debug.Log(eventMainText.GetComponent<Text>().text);
-		//eventBoxList.Clear();
-		//GameObject newEventText = 
-		//	Instantiate(textBoxPrefab);
+		//Debug.Log(eventMainText.GetComponent<Text>().text);
+
+		eventBoxList.ForEach(Destroy);
+		eventBoxList.Clear();
+		GameObject newEventText = Instantiate(textBoxPrefab, Vector3.zero, Quaternion.identity);
+		//Text newEventText = canvas.AddComponent<Text>();
 		Text newText;
-		newText = eventMainText.GetComponent<Text>();
+		newText = newEventText.GetComponent<Text>();
 		newText.text = currentEvent.eventText;
-		//eventBoxList.Add(newEventText);			
+		//newEventText.text = currentEvent.eventText;
+		newEventText.transform.SetParent(canvas.transform, false);
+		eventBoxList.Add(newEventText);			
 		//		Debug.Log("Current event: " + currentEventText);
 		//currentEventText = currentEvent.eventText;
+		storeCurrentEvent = currentEvent;
 	}
+
+	public void updateResources(List<StoryResource> resources){
+		string newText = "";
+		for(int i = 0 ; i < resources.Count; i++){
+			newText = newText + resources[i].name + " " + resources[i].amount + "\n";
+		}
+		Text tempText;
+		tempText = resourceText.GetComponent<Text>();
+		tempText.text = newText;
+		//newEventText.text = currentEvent.eventText;
+	}
+
 
 	/*
 	 * for reference only

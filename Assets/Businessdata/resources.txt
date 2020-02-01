@@ -1,0 +1,6 @@
+Oxygen 50
+Water 50
+Food 50
+Metal 10
+Crew 20
+Energy 50

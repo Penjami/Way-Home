@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 
-public class EventDataReader : MonoBehaviour {
+public class EventDataReader{
 
 	public void readEventData (string filename, List<StoryEvent> eventList){
 		StreamReader reader = new StreamReader(filename);
@@ -85,15 +85,5 @@ public class EventDataReader : MonoBehaviour {
 		return resource;
 	}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }

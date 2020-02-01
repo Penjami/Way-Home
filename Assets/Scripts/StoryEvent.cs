@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoryEvent : MonoBehaviour
+public class StoryEvent
 {
 
 	public string eventText = ""; // description of event
@@ -51,15 +51,5 @@ public class StoryEvent : MonoBehaviour
 		return eventText;
 	}
 		
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
