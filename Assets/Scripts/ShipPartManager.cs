@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class SelectShipParts : MonoBehaviour
+public class ShipPartManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI statusText;
+    [SerializeField] private TextMeshProUGUI partText;
+    [SerializeField] private GameObject panel;
+
+
     Transform _selectedRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        panel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,6 +46,8 @@ public class SelectShipParts : MonoBehaviour
                         mat.SetColor("_EmissionColor", Color.cyan);
                     }
                 }
+                partText.text = _selectedRenderer.name;
+                panel.SetActive(true);
             } else {
                 foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
                     foreach (var mat in rend.materials) {
@@ -48,6 +56,7 @@ public class SelectShipParts : MonoBehaviour
                     }
                 }
                 _selectedRenderer = null;
+                panel.SetActive(false);
             }
 
             Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
