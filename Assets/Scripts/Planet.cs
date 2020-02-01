@@ -29,6 +29,6 @@ public class Planet : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)) {
             Start();
         }
-        _innerPlanet.eulerAngles += new Vector3(0,10 * Time.deltaTime, 0);
+        _innerPlanet.eulerAngles += _rotDir * Time.deltaTime;
     }
 }
