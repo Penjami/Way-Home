@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ShipPartManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI statusText;
     [SerializeField] private TextMeshProUGUI partText;
     [SerializeField] private GameObject panel;
-
+    [SerializeField] private GameObject fixButton;
 
     Transform _selectedRenderer;
 
@@ -51,8 +52,16 @@ public class ShipPartManager : MonoBehaviour
                     }
                 }
                 partText.text = _selectedRenderer.name;
+                var shipPart = _selectedRenderer.GetComponent<ShipPart>();
                 statusText.text = "Status: " + _selectedRenderer.GetComponent<ShipPart>().GetPartStatus;
                 panel.SetActive(true);
+                if(shipPart.GetPartStatus == PartStatus.OK) {
+                    fixButton.SetActive(false);
+                    panel.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 200);
+                } else {
+                    fixButton.SetActive(true);
+                    panel.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 300);
+                }
             } else {
                 UnselectShipPart();
             }
