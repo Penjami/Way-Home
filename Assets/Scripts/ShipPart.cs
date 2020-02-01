@@ -10,6 +10,8 @@ public class ShipPart : MonoBehaviour
 
     public PartStatus GetPartStatus => _partStatus;
 
+    public PartType partType;
+
     public void SetPartStatus(PartStatus status) {
         if (status == PartStatus.OK) {
             foreach ( var item in _defaultRenderers)
@@ -31,8 +33,81 @@ public class ShipPart : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    public void OnMovement()
+    {
+        switch (partType)
+        {
+            case PartType.BASE:
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.COCKPIT: 
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.CONTAINER: 
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.GARDEN: 
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.GENERATOR: 
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.SATELLITE: 
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.THRUSTER: 
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.WATERTANK: 
+                if(_partStatus == PartStatus.OK) {
+                    
+                } else {
+                    
+                }
+            break;
+            case PartType.WINGS: 
+                
+            break;
+        }
+    }
 }
 
 public enum PartStatus {
     OK, BROKEN
+}
+
+public enum PartType {
+    BASE, COCKPIT, CONTAINER, GARDEN, GENERATOR, SATELLITE, THRUSTER, WATERTANK, WINGS
 }

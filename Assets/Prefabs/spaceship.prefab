@@ -192,6 +192,7 @@ MonoBehaviour:
   - {fileID: 6898227749354843203}
   _brokenRenderers:
   - {fileID: 5402482802000157265}
+  partType: 0
 --- !u!1 &1309991562274160919
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +703,7 @@ MonoBehaviour:
   - {fileID: 7025994030993426642}
   _brokenRenderers:
   - {fileID: 7224471499305754381}
+  partType: 8
 --- !u!1 &3010642037512597426
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,6 +977,7 @@ MonoBehaviour:
   - {fileID: 737135621274204056}
   _brokenRenderers:
   - {fileID: 4047588134053707728}
+  partType: 2
 --- !u!1 &3778025432666160273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1168,7 @@ MonoBehaviour:
   - {fileID: 1700008678922684973}
   _brokenRenderers:
   - {fileID: 5797973192639579428}
+  partType: 7
 --- !u!1 &4211781443854271763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,6 +1282,7 @@ MonoBehaviour:
   - {fileID: 3511489391162071685}
   _brokenRenderers:
   - {fileID: 5338470735573660160}
+  partType: 1
 --- !u!1 &4621501836093859720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,6 +1372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8221479919409248905}
+  - component: {fileID: 7273013833624616377}
   m_Layer: 0
   m_Name: spaceship
   m_TagString: Untagged
@@ -1411,6 +1417,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &7273013833624616377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4918996999458769050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54ccafb54d2b994db241adaf4070157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6297387434940124312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,6 +1793,7 @@ MonoBehaviour:
   - {fileID: 884067640113281243}
   _brokenRenderers:
   - {fileID: 7190502810866048620}
+  partType: 6
 --- !u!1 &7451742915196631420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,6 +2069,7 @@ MonoBehaviour:
   - {fileID: 4626690141469686474}
   _brokenRenderers:
   - {fileID: 4049297573125913712}
+  partType: 3
 --- !u!1 &8040582640738920683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,6 +2181,7 @@ MonoBehaviour:
   - {fileID: 3104422783843034351}
   _brokenRenderers:
   - {fileID: 3178727374675888959}
+  partType: 5
 --- !u!1 &8169415312981893114
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,7 +2196,7 @@ GameObject:
   - component: {fileID: 1903370953025249840}
   - component: {fileID: 6158836840372307919}
   m_Layer: 0
-  m_Name: G'enerator
+  m_Name: Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2275,6 +2296,7 @@ MonoBehaviour:
   _brokenRenderers:
   - {fileID: 4616758573210876975}
   - {fileID: 2178045591782330219}
+  partType: 4
 --- !u!1 &8564102008096155862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,6 +2409,7 @@ MonoBehaviour:
   - {fileID: 5780421473262859681}
   _brokenRenderers:
   - {fileID: 3758538578799389331}
+  partType: 6
 --- !u!1001 &5381674665454009822
 PrefabInstance:
   m_ObjectHideFlags: 0
