@@ -24,6 +24,10 @@ public class ShipPartManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) {
             SelectShipPart();
         }
+
+        if(Input.GetMouseButtonDown(1)) {
+            UnselectShipPart();
+        }
     }
 
     void SelectShipPart() {
@@ -47,19 +51,32 @@ public class ShipPartManager : MonoBehaviour
                     }
                 }
                 partText.text = _selectedRenderer.name;
+                statusText.text = "Status: " + _selectedRenderer.GetComponent<ShipPart>().GetPartStatus;
                 panel.SetActive(true);
             } else {
-                foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
-                    foreach (var mat in rend.materials) {
-                        mat.EnableKeyword("_EMISSION");
-                        mat.SetColor("_EmissionColor", Color.black);
-                    }
-                }
-                _selectedRenderer = null;
-                panel.SetActive(false);
+                UnselectShipPart();
             }
 
             Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+        }
+    }
+
+    public void OnFixButtonPress() {
+        if(_selectedRenderer != null) {
+            _selectedRenderer.GetComponent<ShipPart>().SetPartStatus(PartStatus.OK);
+        }
+    }
+
+    void UnselectShipPart() {
+        if(_selectedRenderer != null) {
+            foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
+                foreach (var mat in rend.materials) {
+                    mat.EnableKeyword("_EMISSION");
+                    mat.SetColor("_EmissionColor", Color.black);
+                }
+            }
+            _selectedRenderer = null;
+            panel.SetActive(false);
         }
     }
 }
