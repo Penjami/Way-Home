@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1903370953214897473}
   - component: {fileID: 7860828765639561136}
   m_Layer: 0
-  m_Name: Baseship
+  m_Name: Hull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 1903370953603398802}
   - component: {fileID: 2677685812958388434}
   m_Layer: 0
-  m_Name: WaterTank
+  m_Name: Water Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

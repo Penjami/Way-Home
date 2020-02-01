@@ -41,7 +41,7 @@ public class ShipPart : MonoBehaviour
     {
         switch (partType)
         {
-            case PartType.BASE:
+            case PartType.HULL:
                 if(_partStatus == PartStatus.OK) {
                     
                 } else {
@@ -109,5 +109,5 @@ public enum PartStatus {
 }
 
 public enum PartType {
-    BASE, COCKPIT, CONTAINER, GARDEN, GENERATOR, SATELLITE, THRUSTER, WATERTANK, WINGS
+    HULL, COCKPIT, CONTAINER, GARDEN, GENERATOR, SATELLITE, THRUSTER, WATERTANK, WINGS
 }
