@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class SelectShipParts : MonoBehaviour
 {
-
-    [SerializeField] private Material _defaultMaterial;
-    [SerializeField] private Material _selectedMaterial;
-
-
-    Renderer _oldSelected;
-    Renderer _newSelected;
+    Renderer _selectedRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -30,14 +24,15 @@ public class SelectShipParts : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if ( Physics.Raycast (ray,out hit,100000.0f)) {
-            _oldSelected = _newSelected;
-            if(_oldSelected != null) {
-                _oldSelected.material = _defaultMaterial;
+            if(_selectedRenderer != null) {
+                foreach (var mat in _selectedRenderer.materials) {
+                    mat.SetColor("_EmissionColor", Color.black);
+                }
             }
-            _newSelected = hit.transform.GetComponent<Renderer>();
-            var color = _newSelected.material.color;
-            _newSelected.material = _selectedMaterial;
-            _newSelected.material.color = color;
+            _selectedRenderer = hit.transform.GetComponent<Renderer>();
+            foreach (var mat in _selectedRenderer.materials) {
+                mat.SetColor("_EmissionColor", Color.red);
+            }
             Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
         }
     }
