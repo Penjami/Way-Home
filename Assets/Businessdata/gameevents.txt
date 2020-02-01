@@ -1,0 +1,15 @@
+<event>
+<description>
+You stumble upon unlikely dense asteroid field. Fortunately your shields are operational and prevent harmful collisions. Also you find some salvageable metal.
+</description>
+<requirement>
+shield 1
+You crash upon some space rocks. Unfortunately your shields have not been repaired and are not operational. Your hull takes pounding and a lot of oxygen is lost before your crew pathes the holes.
+</requirement>
+<success>
+metal 5
+</success>
+<failure>
+oxygen -10
+</failure>
+</event>
