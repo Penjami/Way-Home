@@ -32,12 +32,22 @@ public class SelectShipParts : MonoBehaviour
                     }
                 }
             }
-            _selectedRenderer = hit.transform;
-            foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
-                foreach (var mat in rend.materials) {
-                    mat.EnableKeyword("_EMISSION");
-                    mat.SetColor("_EmissionColor", Color.cyan);
+            if(_selectedRenderer != hit.transform) {
+                _selectedRenderer = hit.transform;
+                foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
+                    foreach (var mat in rend.materials) {
+                        mat.EnableKeyword("_EMISSION");
+                        mat.SetColor("_EmissionColor", Color.cyan);
+                    }
                 }
+            } else {
+                foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
+                    foreach (var mat in rend.materials) {
+                        mat.EnableKeyword("_EMISSION");
+                        mat.SetColor("_EmissionColor", Color.black);
+                    }
+                }
+                _selectedRenderer = null;
             }
 
             Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object

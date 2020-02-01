@@ -5,11 +5,11 @@ using UnityEngine;
 public class MasterScript : MonoBehaviour
 {
 	List<StoryEvent> storyEvents = new List<StoryEvent>();
-	myTextGui gui;
+	[SerializeField] myTextGui gui;
 	public GameObject canvas;
 
 	void Awake(){
-		gui = new myTextGui(canvas.transform);
+		gui = GetComponent<myTextGui>();
 	}
 
     // Start is called before the first frame update
