@@ -33,6 +33,14 @@ public class StoryResourceStore {
 			return false;
 		}
 		storyResources[name] += amount;
+		var part = GameObject.Find(name);
+		if (part != null) {
+			if(amount < 0) {
+				part.GetComponent<ShipPart>().SetPartStatus(PartStatus.BROKEN);
+			} else {
+				part.GetComponent<ShipPart>().SetPartStatus(PartStatus.OK);
+			}
+		}
 		return true;
 	}
 

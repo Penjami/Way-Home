@@ -56,6 +56,7 @@ Unlikely as it is you come across uninhabited garden planet. Without adequate se
 food 15
 oxygen 50
 water 50
+hull -1
 </result>
 </event>
 

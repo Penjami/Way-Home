@@ -11,12 +11,14 @@ public class ShipPartManager : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject fixButton;
 
-    Transform _selectedRenderer;
+    ShipPart _selectedPart;
+    MasterScript _masterScript;
 
     // Start is called before the first frame update
     void Start()
     {
         panel.SetActive(false);
+        _masterScript = FindObjectOfType<MasterScript>();
     }
 
     // Update is called once per frame
@@ -35,25 +37,28 @@ public class ShipPartManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if ( Physics.Raycast (ray,out hit,100000.0f)) {
-            if(_selectedRenderer != null) {
-                foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
+            if(_selectedPart != null) {
+                foreach(Renderer rend in _selectedPart.GetAllMeshRenderers()) {
                     foreach (var mat in rend.materials) {
                         mat.EnableKeyword("_EMISSION");
                         mat.SetColor("_EmissionColor", Color.black);
                     }
                 }
+                _selectedPart.isSelected = false;
             }
-            if(_selectedRenderer != hit.transform) {
-                _selectedRenderer = hit.transform;
-                foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
+            var newPart = hit.transform.GetComponent<ShipPart>();
+            if(_selectedPart != newPart) {
+                _selectedPart = newPart;
+                _selectedPart.isSelected = true;
+                foreach(Renderer rend in _selectedPart.GetAllMeshRenderers()) {
                     foreach (var mat in rend.materials) {
                         mat.EnableKeyword("_EMISSION");
                         mat.SetColor("_EmissionColor", Color.cyan);
                     }
                 }
-                partText.text = _selectedRenderer.name;
-                var shipPart = _selectedRenderer.GetComponent<ShipPart>();
-                statusText.text = "Status: " + _selectedRenderer.GetComponent<ShipPart>().GetPartStatus;
+                partText.text = _selectedPart.name;
+                var shipPart = _selectedPart.GetComponent<ShipPart>();
+                statusText.text = "Status: " + _selectedPart.GetComponent<ShipPart>().GetPartStatus;
                 panel.SetActive(true);
                 if(shipPart.GetPartStatus == PartStatus.OK) {
                     fixButton.SetActive(false);
@@ -71,20 +76,24 @@ public class ShipPartManager : MonoBehaviour
     }
 
     public void OnFixButtonPress() {
-        if(_selectedRenderer != null) {
-            _selectedRenderer.GetComponent<ShipPart>().SetPartStatus(PartStatus.OK);
+        if(_selectedPart != null) {
+            if(_masterScript.storyResources.getResource("metal")>=10) {
+                _selectedPart.SetPartStatus(PartStatus.OK);
+                _masterScript.storyResources.addResource("metal", -10);
+            }
         }
     }
 
     void UnselectShipPart() {
-        if(_selectedRenderer != null) {
-            foreach(Renderer rend in _selectedRenderer.GetComponentsInChildren<Renderer>()) {
+        if(_selectedPart != null) {
+            foreach(Renderer rend in _selectedPart.GetAllMeshRenderers()) {
                 foreach (var mat in rend.materials) {
                     mat.EnableKeyword("_EMISSION");
                     mat.SetColor("_EmissionColor", Color.black);
                 }
             }
-            _selectedRenderer = null;
+            _selectedPart.isSelected = false;
+            _selectedPart = null;
             panel.SetActive(false);
         }
     }

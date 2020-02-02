@@ -6,13 +6,15 @@ public class ShipPart : MonoBehaviour
 {
     [SerializeField] List<Renderer> _defaultRenderers = new List<Renderer>(); 
     [SerializeField] List<Renderer> _brokenRenderers = new List<Renderer>(); 
-    private PartStatus _partStatus = PartStatus.OK;
+    [SerializeField] private PartStatus _partStatus = PartStatus.OK;
 
     public PartStatus GetPartStatus => _partStatus;
 
     public PartType partType;
+    public bool isSelected;
 
     public void SetPartStatus(PartStatus status) {
+        _partStatus = status;
         if (status == PartStatus.OK) {
             foreach ( var item in _defaultRenderers)
             {
@@ -32,6 +34,14 @@ public class ShipPart : MonoBehaviour
                 item.enabled = true;
             }
         }
+    }
+
+    public List<Renderer> GetAllMeshRenderers() {
+        var renderers = new List<Renderer>();
+        renderers.AddRange(_defaultRenderers);
+        renderers.AddRange(_brokenRenderers);
+
+        return renderers;
     }
 
     /// <summary>
