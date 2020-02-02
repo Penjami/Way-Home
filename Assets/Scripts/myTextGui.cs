@@ -38,14 +38,9 @@ public class myTextGui : MonoBehaviour
 		//Debug.Log("update" + eventMainText.GetComponent<Text>().text);
     }
 
-	public void showEvent(StoryEvent currentEvent){
-		if (currentEvent == storeCurrentEvent){
-			//Debug.Log("old event");
-			return;
-		}
+	public void showEvent(string eventText){
 
 		Debug.Log("new event");
-		//Debug.Log(eventMainText.GetComponent<Text>().text);
 
 		eventBoxList.ForEach(Destroy);
 		eventBoxList.Clear();
@@ -59,9 +54,6 @@ public class myTextGui : MonoBehaviour
 		//newEventText.text = currentEvent.eventText;
 		newEventText.transform.SetParent(canvas.transform, false);
 		eventBoxList.Add(newEventText);			
-		//		Debug.Log("Current event: " + currentEventText);
-		//currentEventText = currentEvent.eventText;
-		storeCurrentEvent = currentEvent;
 	}
 
 	public void updateResources(List<StoryResource> resources){

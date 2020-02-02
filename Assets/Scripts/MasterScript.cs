@@ -6,8 +6,9 @@ using TMPro;
 public class MasterScript : MonoBehaviour
 {
 	List<StoryEvent> storyEvents = new List<StoryEvent>();
-	List<StoryResource> storyResources;
+	StoryResourceStore storyResources = new StoryResourceStore();
 	myTextGui gui;
+	bool newEvent = true; // do we process new event next update?
 
 	void Awake(){		
 		gui = gameObject.GetComponent(typeof(myTextGui)) as myTextGui;
@@ -21,10 +22,11 @@ public class MasterScript : MonoBehaviour
 		Debug.Log(storyEvents.Count + " events read from file.");
 
 		StoryResourceReader resourceReader = new StoryResourceReader();
-		storyResources = resourceReader.readResourceData ("Assets/Businessdata/resources.txt");
 
+		resourceReader.readResourceData ("Assets/Businessdata/resources.txt", storyResources);
+    	
 		StartNextEvent();
-        
+
     }
 
     // Update is called once per frame
@@ -33,5 +35,14 @@ public class MasterScript : MonoBehaviour
 		StoryEvent currentEvent = storyEvents[Random.Range(0, storyEvents.Count - 1)];
 		gui.showEvent(currentEvent);
 		gui.updateResources (storyResources);
+		
+		if(newEvent){
+			StoryEvent currentEvent = storyEvents[0];
+			string eventText = currentEvent.getResults(storyResources);
+			gui.showEvent(eventText);
+			newEvent = false;
+		}
+
+		gui.updateResources (storyResources.getList());
     }
 }
