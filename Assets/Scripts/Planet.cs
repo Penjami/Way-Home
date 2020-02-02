@@ -42,6 +42,16 @@ public class Planet : MonoBehaviour
 
     }
 
+    public void SpawnStar(Color color) {
+        _outerPlanet.gameObject.SetActive(false);
+        _innerPlanet.gameObject.SetActive(false);
+        _star.gameObject.SetActive(true);
+
+        var renderer = _star.GetComponent<Renderer>();
+
+        renderer.material.SetColor("Color_1", color * 3f);
+    }
+
     // Update is called once per frame
     void Update()
     {
