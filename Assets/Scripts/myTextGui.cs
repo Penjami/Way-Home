@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Text;
 using System.IO;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class myTextGui : MonoBehaviour
@@ -13,17 +14,22 @@ public class myTextGui : MonoBehaviour
 	public GameObject textBoxPrefab; 
 	public GameObject canvas;
 	StoryEvent storeCurrentEvent = null;
+    [SerializeField] private TextMeshProUGUI _waterText;
+    [SerializeField] private TextMeshProUGUI _oxygenText;
+	[SerializeField] private TextMeshProUGUI _energyText;
+    [SerializeField] private TextMeshProUGUI _steelText;
+	[SerializeField] private TextMeshProUGUI _crewText;
+    [SerializeField] private TextMeshProUGUI _foodText;
 	//GameObject eventMainText;
 
 	List<GameObject> eventBoxList = new List<GameObject>();
-	GameObject resourceText;
+	MasterScript _masterScript;
 
     void Start()
     {
 		//eventMainText = Instantiate(textBoxPrefab);
 		//Debug.Log(eventMainText.GetComponent<Text>().text);
-		resourceText = Instantiate(textBoxPrefab, new Vector3(-Screen.width/2 + 150, Screen.height/2-50, 0), Quaternion.identity);
-		resourceText.transform.SetParent(canvas.transform, false);
+		_masterScript = GetComponent<MasterScript>();
     }
 
     // Update is called once per frame
@@ -43,11 +49,13 @@ public class myTextGui : MonoBehaviour
 
 		eventBoxList.ForEach(Destroy);
 		eventBoxList.Clear();
-		GameObject newEventText = Instantiate(textBoxPrefab, Vector3.zero, Quaternion.identity);
+		GameObject newEventText = Instantiate(textBoxPrefab);
 		//Text newEventText = canvas.AddComponent<Text>();
-		Text newText;
-		newText = newEventText.GetComponent<Text>();
+		TextMeshProUGUI newText;
+		newText = newEventText.GetComponentsInChildren<TextMeshProUGUI>()[1];
 		newText.text = currentEvent.eventText;
+		Button button = newEventText.GetComponentInChildren<Button>();
+		button.onClick.AddListener(() => {_masterScript.StartNextEvent();});
 		//newEventText.text = currentEvent.eventText;
 		newEventText.transform.SetParent(canvas.transform, false);
 		eventBoxList.Add(newEventText);			
@@ -59,12 +67,28 @@ public class myTextGui : MonoBehaviour
 	public void updateResources(List<StoryResource> resources){
 		string newText = "";
 		for(int i = 0 ; i < resources.Count; i++){
-			newText = newText + resources[i].name + " " + resources[i].amount + "\n";
+			switch (resources[i].name)
+			{
+				case "Water":
+					_waterText.text =  resources[i].amount.ToString();
+				break;
+				case "Oxygen":
+					_oxygenText.text =  resources[i].amount.ToString();
+				break;
+				case "Energy":
+					_energyText.text =  resources[i].amount.ToString();
+				break;
+				case "Steel":
+					_steelText.text =  resources[i].amount.ToString();
+				break;
+				case "Crew":
+					_crewText.text =  resources[i].amount.ToString();
+				break;
+				case "Food":
+					_foodText.text =  resources[i].amount.ToString();
+				break;
+			}
 		}
-		Text tempText;
-		tempText = resourceText.GetComponent<Text>();
-		tempText.text = newText;
-		//newEventText.text = currentEvent.eventText;
 	}
 
 
