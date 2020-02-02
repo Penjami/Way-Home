@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1886995182}
   - component: {fileID: 1886995181}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: EnergyShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1903370953214897473}
   - component: {fileID: 7860828765639561136}
   m_Layer: 0
-  m_Name: Hull
+  m_Name: hull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -877,7 +877,7 @@ GameObject:
   - component: {fileID: 1903370953405660342}
   - component: {fileID: 7652597483424112100}
   m_Layer: 0
-  m_Name: Container
+  m_Name: container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 1903370953603398802}
   - component: {fileID: 2677685812958388434}
   m_Layer: 0
-  m_Name: Water Tank
+  m_Name: water tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1183,7 +1183,7 @@ GameObject:
   - component: {fileID: 1903370953546092127}
   - component: {fileID: 8055597797631849158}
   m_Layer: 0
-  m_Name: Cockpit
+  m_Name: cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1695,7 +1695,7 @@ GameObject:
   - component: {fileID: 1903370954630789038}
   - component: {fileID: 4101320800559463460}
   m_Layer: 0
-  m_Name: Thruster 1
+  m_Name: thruster 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1970,7 +1970,7 @@ GameObject:
   - component: {fileID: 1903370954695649940}
   - component: {fileID: 480697046083092667}
   m_Layer: 0
-  m_Name: Garden
+  m_Name: garden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2084,7 +2084,7 @@ GameObject:
   - component: {fileID: 1903370954500869024}
   - component: {fileID: 7760571103556688536}
   m_Layer: 0
-  m_Name: Satellite
+  m_Name: satellite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2196,7 +2196,7 @@ GameObject:
   - component: {fileID: 1903370953025249840}
   - component: {fileID: 6158836840372307919}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2311,7 +2311,7 @@ GameObject:
   - component: {fileID: 1903370952679923307}
   - component: {fileID: 2357099489495481195}
   m_Layer: 0
-  m_Name: Thruster 2
+  m_Name: thruster 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

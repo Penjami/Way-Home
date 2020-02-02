@@ -6,7 +6,7 @@ using TMPro;
 public class MasterScript : MonoBehaviour
 {
 	List<StoryEvent> storyEvents = new List<StoryEvent>();
-	StoryResourceStore storyResources = new StoryResourceStore();
+	public StoryResourceStore storyResources = new StoryResourceStore();
 	myTextGui gui;
 	bool newEvent = true; // do we process new event next update?
 
@@ -24,7 +24,9 @@ public class MasterScript : MonoBehaviour
 		StoryResourceReader resourceReader = new StoryResourceReader();
 
 		resourceReader.readResourceData ("Assets/Businessdata/resources.txt", storyResources);
-    	
+
+		gui.updateResources (storyResources);
+
 		StartNextEvent();
 
     }
@@ -35,14 +37,5 @@ public class MasterScript : MonoBehaviour
 		StoryEvent currentEvent = storyEvents[Random.Range(0, storyEvents.Count - 1)];
 		gui.showEvent(currentEvent);
 		gui.updateResources (storyResources);
-		
-		if(newEvent){
-			StoryEvent currentEvent = storyEvents[0];
-			string eventText = currentEvent.getResults(storyResources);
-			gui.showEvent(eventText);
-			newEvent = false;
-		}
-
-		gui.updateResources (storyResources.getList());
-    }
+	}
 }

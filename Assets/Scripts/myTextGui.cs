@@ -38,7 +38,7 @@ public class myTextGui : MonoBehaviour
 		//Debug.Log("update" + eventMainText.GetComponent<Text>().text);
     }
 
-	public void showEvent(string eventText){
+	public void showEvent(StoryEvent currentEvent){
 
 		Debug.Log("new event");
 
@@ -48,7 +48,7 @@ public class myTextGui : MonoBehaviour
 		//Text newEventText = canvas.AddComponent<Text>();
 		TextMeshProUGUI newText;
 		newText = newEventText.GetComponentsInChildren<TextMeshProUGUI>()[1];
-		newText.text = currentEvent.eventText;
+		newText.text = currentEvent.getResults(_masterScript.storyResources);
 		Button button = newEventText.GetComponentInChildren<Button>();
 		button.onClick.AddListener(() => {_masterScript.StartNextEvent();});
 		//newEventText.text = currentEvent.eventText;
@@ -56,31 +56,13 @@ public class myTextGui : MonoBehaviour
 		eventBoxList.Add(newEventText);			
 	}
 
-	public void updateResources(List<StoryResource> resources){
-		string newText = "";
-		for(int i = 0 ; i < resources.Count; i++){
-			switch (resources[i].name)
-			{
-				case "Water":
-					_waterText.text =  resources[i].amount.ToString();
-				break;
-				case "Oxygen":
-					_oxygenText.text =  resources[i].amount.ToString();
-				break;
-				case "Energy":
-					_energyText.text =  resources[i].amount.ToString();
-				break;
-				case "Steel":
-					_steelText.text =  resources[i].amount.ToString();
-				break;
-				case "Crew":
-					_crewText.text =  resources[i].amount.ToString();
-				break;
-				case "Food":
-					_foodText.text =  resources[i].amount.ToString();
-				break;
-			}
-		}
+	public void updateResources(StoryResourceStore resources){
+		_waterText.text =  resources.getResource("water").ToString();
+		_oxygenText.text =  resources.getResource("oxygen").ToString();
+		_energyText.text =  resources.getResource("energy").ToString();
+		_steelText.text =  resources.getResource("metal").ToString();
+		_crewText.text =  resources.getResource("crew").ToString();
+		_foodText.text =  resources.getResource("food").ToString();
 	}
 
 
