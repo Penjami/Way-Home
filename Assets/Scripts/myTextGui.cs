@@ -44,7 +44,8 @@ public class myTextGui : MonoBehaviour
 
 		eventBoxList.ForEach(Destroy);
 		eventBoxList.Clear();
-		GameObject newEventText = Instantiate(textBoxPrefab);
+		GameObject newEventText = Instantiate(textBoxPrefab, canvas.transform);
+		newEventText.transform.SetSiblingIndex(0);
 		//Text newEventText = canvas.AddComponent<Text>();
 		TextMeshProUGUI newText;
 		newText = newEventText.GetComponentsInChildren<TextMeshProUGUI>()[1];
@@ -54,8 +55,7 @@ public class myTextGui : MonoBehaviour
 		button[1].onClick.AddListener(() => {_masterScript.StartNextEvent("yellow");});
 		button[2].onClick.AddListener(() => {_masterScript.StartNextEvent("blue");});
 		//newEventText.text = currentEvent.eventText;
-		newEventText.transform.SetParent(canvas.transform, false);
-		eventBoxList.Add(newEventText);			
+		eventBoxList.Add(newEventText);
 	}
 
 	public void updateResources(StoryResourceStore resources){

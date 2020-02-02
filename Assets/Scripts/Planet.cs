@@ -8,6 +8,9 @@ public class Planet : MonoBehaviour
     [SerializeField] private Transform _outerPlanet;
     [SerializeField] private Transform _innerPlanet;
     [SerializeField] private Transform _star;
+    [SerializeField] private Transform _enemyShip;
+    [SerializeField] private Transform _tradShip;
+
 
     private Vector3 _rotDir;
 

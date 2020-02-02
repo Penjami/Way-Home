@@ -33,6 +33,28 @@ public class StoryResourceStore {
 			return false;
 		}
 		storyResources[name] += amount;
+		switch (name) {
+			case "food":
+				if(storyResources[name] < 0) {
+					GameObject.FindObjectOfType<MasterScript>().GameOver();
+				}
+			break;
+			case "oxygen":
+				if(storyResources[name] < 0) {
+					GameObject.FindObjectOfType<MasterScript>().GameOver();
+				}
+			break;
+			case "water":
+				if(storyResources[name] < 0) {
+					GameObject.FindObjectOfType<MasterScript>().GameOver();
+				}
+			break;
+			case "energy":
+				if(storyResources[name] < 0) {
+					GameObject.FindObjectOfType<MasterScript>().GameOver();
+				}
+			break;
+		}
 		var part = GameObject.Find(name);
 		if (part != null) {
 			if(amount < 0) {
@@ -41,19 +63,6 @@ public class StoryResourceStore {
 				part.GetComponent<ShipPart>().SetPartStatus(PartStatus.OK);
 			}
 		}
-		return true;
-	}
-
-	// false if resource didn't exist
-	public bool removeResource (string name, int amount){
-		int store;
-		try {
-			store = storyResources[name];
-		} catch {
-			Debug.Log("Trying to remove non-existent resource " + name);
-			return false;
-		}
-		storyResources[name] -= amount;
 		return true;
 	}
 

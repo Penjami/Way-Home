@@ -2,10 +2,13 @@
 
 public class MasterScript : MonoBehaviour
 {
+	public GameObject _endScreen;
+	public GameObject _winScreen;
 	StoryEventStore storyEvents = new StoryEventStore();
 	public StoryResourceStore storyResources = new StoryResourceStore();
 	myTextGui gui;
 	bool newEvent = true; // do we process new event next update?
+	private int eventCounter;
 
 	void Awake(){		
 		gui = gameObject.GetComponent(typeof(myTextGui)) as myTextGui;
@@ -28,11 +31,21 @@ public class MasterScript : MonoBehaviour
 
     }
 
+	public void GameOver() {
+		_endScreen.SetActive(true);
+		Time.timeScale = 0;
+	}
+
     // Update is called once per frame
     public void StartNextEvent(string target)
     {
 		StoryEvent currentEvent = storyEvents.getRandomEvent(target);
 		gui.showEvent(currentEvent);
 		gui.updateResources (storyResources);
+		eventCounter++;
+		if(eventCounter > 20) {
+			_winScreen.SetActive(true);
+			Time.timeScale = 0;
+		}
 	}
 }
