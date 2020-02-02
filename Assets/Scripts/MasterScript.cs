@@ -5,20 +5,12 @@ using UnityEngine;
 public class MasterScript : MonoBehaviour
 {
 	List<StoryEvent> storyEvents = new List<StoryEvent>();
-<<<<<<< HEAD
-	List<StoryResource> storyResources;
+	StoryResourceStore storyResources = new StoryResourceStore();
 	myTextGui gui;
+	bool newEvent = true; // do we process new event next update?
 
 	void Awake(){		
 		gui = gameObject.GetComponent(typeof(myTextGui)) as myTextGui;
-
-=======
-	[SerializeField] myTextGui gui;
-	public GameObject canvas;
-
-	void Awake(){
-		gui = GetComponent<myTextGui>();
->>>>>>> 2297c5a0ca0ad165f1ac8189dd1ac97cbb0443da
 	}
 
     // Start is called before the first frame update
@@ -29,15 +21,20 @@ public class MasterScript : MonoBehaviour
 		Debug.Log(storyEvents.Count + " events read from file.");
 
 		StoryResourceReader resourceReader = new StoryResourceReader();
-		storyResources = resourceReader.readResourceData ("Assets/Businessdata/resources.txt");
+		resourceReader.readResourceData ("Assets/Businessdata/resources.txt", storyResources);
         
     }
 
     // Update is called once per frame
     void Update()
     {
-		StoryEvent currentEvent = storyEvents[0];
-		gui.showEvent(currentEvent);
-		gui.updateResources (storyResources);
+		if(newEvent){
+			StoryEvent currentEvent = storyEvents[0];
+			string eventText = currentEvent.getResults(storyResources);
+			gui.showEvent(eventText);
+			newEvent = false;
+		}
+
+		gui.updateResources (storyResources.getList());
     }
 }

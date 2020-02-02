@@ -4,52 +4,27 @@ using UnityEngine;
 
 public class StoryEvent
 {
-
-	public string eventText = ""; // description of event
-	List<StoryEventRequirement> requirements = new List<StoryEventRequirement>(); // things needed for event to be success
-	List<StoryEvent> choises = new List<StoryEvent>(); // options for next action
-	List<StoryResource> successResources = new List<StoryResource>(); // consequences of success
-	List<StoryResource> failureResources = new List<StoryResource>(); // consequences of failure
+	public string name; //name of event
+	List<StoryEventResult> results = new List<StoryEventResult>(); // possible outcomes ordered in order of preference (best is first)
 
 	public StoryEvent(){}
 
-	public StoryEvent(string text){
-		eventText = text;
+	public void addResult(StoryEventResult addition){
+		results.Add(addition);
 	}
 
-	public void addRequirement(StoryEventRequirement addition){
-		requirements.Add(addition);
-	}
 
-	public void addChoise(StoryEvent addition){
-		choises.Add(addition);
-	}
 
-	public void addFailure(StoryResource addition){
-		failureResources.Add(addition);
-	}
-
-	public void addSuccess(StoryResource addition){
-		successResources.Add(addition);
-	}
-
-	public List<StoryResource> getResults(){
-		if (getPossible()){
-			return successResources;
-		} else {
-			return failureResources;
+	public string getResults(StoryResourceStore store){
+		//Debug.Log("Event " + name);
+		//Debug.Log("getting results for new event, " + results.Count);
+		for (int i = 0; i < results.Count; i++){
+			//Debug.Log("checking....");
+			if( results[i].checkResult(store)){
+				results[i].processResult(store);
+				return results[i].eventText;
+			}
 		}
+		return "You were unable to do anything (this is error in event results)";
 	}
-
-	// is the event possile
-	public bool getPossible(){
-		return true;
-	}
-
-	// get description of what will happen or why event is not possible
-	public string getResultText(){
-		return eventText;
-	}
-		
-   
 }
