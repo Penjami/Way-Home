@@ -42,7 +42,8 @@ public class EventDataReader{
 				return story;
 			}
 
-
+			story.addLocation(line);
+			Debug.Log("location " + line);
 
 			if (line.Equals("<required>")){
 				result = new StoryEventResult();
