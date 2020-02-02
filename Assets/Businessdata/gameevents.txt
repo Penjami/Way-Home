@@ -1,12 +1,20 @@
+* There are no special comment marks, but outside tags you can write anything *
+
 <event>
 Asteroidas
+red
+blue
+yellow
+* first line after event tag is string identifier for event
 <required>
 You stumble upon unlikely dense asteroid field. Fortunately your shields are operational and prevent harmful collisions. Also you find some salvageable metal.
 shield 1
 </required>
+* required field is required and must be before results and choises
 <result>
 metal 5
 </result>
+*every possible outcome needs own required field
 <required>
 You crash upon some space rocks. Unfortunately your shields have not been repaired and are not operational. Your hull takes pounding and a lot of oxygen is lost before your crew pathes the holes.
 </required>
@@ -17,6 +25,9 @@ oxygen -10
 
 <event>
 Pirates
+red
+blue
+yellow
 <required>
 You encounter a couple of ragged pirate ships, but a couple of shots with your weapons at their general direction is enought to drive them away.
 weapon 1
@@ -39,6 +50,8 @@ metal -100
 
 <event>
 Nice planet
+yellow
+red
 <required>
 Unlikely as it is you come across uninhabited garden planet, and with aid of your sensors you even hit a nice lode of minerals. Eventually you still have to depart, but your stores are much better than before.
 sensors 1
@@ -56,12 +69,13 @@ Unlikely as it is you come across uninhabited garden planet. Without adequate se
 food 15
 oxygen 50
 water 50
-hull -1
 </result>
 </event>
 
 <event>
 Derelict
+blue
+red
 <required>
 A strange signal in your long range scanners reveals itself as a derelict ship. While the hull has some significant damage you assess that it has occured after abandoning the ship. There are no sign of the fate of the crew and ultimately you are unable to determine why exactly the ship was left alone. While you can't make much use for the ship itself, in cargo bay there are some valuable resources.
 sensors 1
@@ -76,6 +90,8 @@ This system has some beautiful nebulae nearby, and while admiring it has somewha
 
 <event>
 Black Hole
+yellow
+blue
 <required>
 You expertly recognize strage anomaly in the long range sensors as a small black hole. Luckily you are far enought to solve the problem with just a moderate change in your navigation plan.
 sensors 1
@@ -92,10 +108,44 @@ energy 50
 energy -50
 </result>
 <required>
-You have been destroyed. You was already way too close when you saw the black hole. Even thought you reacted quickly, you couldn't save the ship. As soon as you heard whining of your failing batteries and screenching of the power couplings out of sync you knew that the ship was doomed. Game Over.
+You have been destroyed. You was already way too close when you saw the black hole. Even thought you reacted quickly, you couldn't save the ship. As soon as you heard whining of your failing batteries and screeching of the power couplings out of sync you knew that the ship was doomed. If the Black Hole didn't leach all the energy even from light, your ship could still be seen from some point of space practically frozen in time while being torn apart by tidal forces near event horizon. Game Over.
 </required>
 <result>
 energy -10000
 </result>
 </event>
- 
+
+<event>
+Merchant
+red
+yellow
+<required>
+A friendly merchant offers to sell you some commodities.
+</required>
+<choises>
+Buy oxygen
+Buy food
+</choises>
+</event>
+
+<event>
+Buy oxygen
+<required>
+You buy 10 oxygen with 10 metals
+metal 10
+</required>
+<result>
+oxygen 10
+metal -10
+</result>
+</event>
+
+<event>
+Buy food
+<required>
+You buy 10 food with 10 metals
+</required>
+<result>
+food 10
+metal -10
+</result>
