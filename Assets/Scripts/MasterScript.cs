@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
+﻿using UnityEngine;
 
 public class MasterScript : MonoBehaviour
 {
-	List<StoryEvent> storyEvents = new List<StoryEvent>();
+	StoryEventStore storyEvents = new StoryEventStore();
 	public StoryResourceStore storyResources = new StoryResourceStore();
 	myTextGui gui;
 	bool newEvent = true; // do we process new event next update?
@@ -18,23 +15,23 @@ public class MasterScript : MonoBehaviour
     void Start()
     {
 		EventDataReader reader = new EventDataReader();
-		reader.readEventData("Assets/Businessdata/gameevents.txt", storyEvents);
-		Debug.Log(storyEvents.Count + " events read from file.");
+		reader.readEventData(Application.streamingAssetsPath + "/gameevents.txt", storyEvents);
+		// Debug.Log(storyEvents.Count + " events read from file.");
 
 		StoryResourceReader resourceReader = new StoryResourceReader();
 
-		resourceReader.readResourceData ("Assets/Businessdata/resources.txt", storyResources);
+		resourceReader.readResourceData (Application.streamingAssetsPath + "/resources.txt", storyResources);
 
 		gui.updateResources (storyResources);
 
-		StartNextEvent();
+		StartNextEvent("beginning");
 
     }
 
     // Update is called once per frame
-    public void StartNextEvent()
+    public void StartNextEvent(string target)
     {
-		StoryEvent currentEvent = storyEvents[Random.Range(0, storyEvents.Count - 1)];
+		StoryEvent currentEvent = storyEvents.getRandomEvent(target);
 		gui.showEvent(currentEvent);
 		gui.updateResources (storyResources);
 	}

@@ -6,7 +6,7 @@ using System;
 
 public class EventDataReader{
 
-	public void readEventData (string filename, List<StoryEvent> eventList){
+	public void readEventData (string filename, StoryEventStore eventList){
 		StreamReader reader = new StreamReader(filename);
 
 		string line;
@@ -17,7 +17,7 @@ public class EventDataReader{
 				Debug.Log(toBeRead.name);
 				//if (toBeRead != null){
 					Debug.Log("Event added");
-					eventList.Add(toBeRead);
+					eventList.storyEvents.Add(toBeRead);
 				//} else {
 				//	Debug.Log("null event read, something went wrong");
 				//}

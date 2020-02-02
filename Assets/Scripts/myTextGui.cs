@@ -49,8 +49,10 @@ public class myTextGui : MonoBehaviour
 		TextMeshProUGUI newText;
 		newText = newEventText.GetComponentsInChildren<TextMeshProUGUI>()[1];
 		newText.text = currentEvent.getResults(_masterScript.storyResources);
-		Button button = newEventText.GetComponentInChildren<Button>();
-		button.onClick.AddListener(() => {_masterScript.StartNextEvent();});
+		Button[] button = newEventText.GetComponentsInChildren<Button>();
+		button[0].onClick.AddListener(() => {_masterScript.StartNextEvent("red");});
+		button[1].onClick.AddListener(() => {_masterScript.StartNextEvent("yellow");});
+		button[2].onClick.AddListener(() => {_masterScript.StartNextEvent("blue");});
 		//newEventText.text = currentEvent.eventText;
 		newEventText.transform.SetParent(canvas.transform, false);
 		eventBoxList.Add(newEventText);			
