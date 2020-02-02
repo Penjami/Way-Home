@@ -36,9 +36,15 @@ public class MasterScript : MonoBehaviour
 		Time.timeScale = 0;
 	}
 
+	public void RestartGame() {
+		Time.timeScale = 1;
+		Application.LoadLevel(0);
+	}
+
     // Update is called once per frame
     public void StartNextEvent(string target)
     {
+		FindObjectOfType<Planet>().Start();
 		StoryEvent currentEvent = storyEvents.getRandomEvent(target);
 		gui.showEvent(currentEvent);
 		gui.updateResources (storyResources);
