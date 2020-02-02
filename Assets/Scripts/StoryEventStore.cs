@@ -12,7 +12,16 @@ public class StoryEventStore {
 		defaultResult.eventText = "Nothing happens. Seems that developers of this game have not implemented this event.";
 	}
 
-
+	public StoryEvent getRandomEvent(string location){
+		for (int i = 0; i < 1000; i++){
+			int index = Random.Range(0, storyEvents.Count);
+			if (storyEvents[i].getLocations().Contains(location)){
+				return storyEvents[i];
+			}
+		}
+		Debug.Log("Any event on location " + location + "not found");
+		return defaultEvent;
+	}
 
 	public StoryEvent getEventByName(string name){
 		for(int i = 0; i < storyEvents.Count; i++){
